@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Posts</title>
+    </head>
+    <style>
+        body{
+            background-color: darkslategray;
+            color: #fff;
+            font-family: monospace;
+        }
+        h1{
+            font-weight: 700;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-align:center;
+        }
+        .a{
+            background-color: #4b6e6e;
+            padding: 20px;
+        }
+        .a h2 spn{
+            color:#2ea6b8;
+            letter-spacing: 2px;
+        }
+        .a1{
+            background-color: #396363;
+            padding: 20px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .title{
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .text{
+            color: #ffffff80;
+        }
+    </style>
+    <form action="/posts/" method="GET">
+        <input type="text" name="search" value="{{ search }}" />
+        <input type="submit" value="Search" />
+    </form>
+    <body>
+        <h1>Posts Search <spn>{{search}}</spn></h1>
+        <div class='a1'>
+            {% for post in posts %}
+            <div class='a'>
+                <h2>Author : <spn>{{ post.author.user }}</spn></h2>
+                <p> Date Create : {{ post.created_date }} <br>
+                    Location : {{ post.author.location }}</p>
+                <h2 class='title'>{{ post.title }}</h2>
+                
+                <p class='text'>{{ post.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
